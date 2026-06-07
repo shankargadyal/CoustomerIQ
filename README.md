@@ -354,6 +354,12 @@ All endpoints return JSON.
 - Automatic result interpretation with programmatically generated explanations
 
 ---
+## 👨‍💻 Author
+
+**Shankar Gadyal**  
+🎓 MSc Data Science Student
+---
+Passionate about Data Science, Machine Learning, Predictive Analytics, and AI-powered applications.
 
 ## License
 
