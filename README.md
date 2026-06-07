@@ -15,68 +15,28 @@
 
 The executive dashboard provides a complete snapshot of customer behavior, revenue performance, retention metrics, and churn distribution.
 
-![Overview Dashboard] (<img width="1902" height="844" alt="Screenshot 2026-06-07 235407" src="https://github.com/user-attachments/assets/bf9f28af-97f8-46f7-878f-3d7fda8af22b" />
-)
-
----
+<img width="1902" height="844" alt="Overview Dashboard" src="https://github.com/user-attachments/assets/bf9f28af-97f8-46f7-878f-3d7fda8af22b">
 
 ### 👥 Customer Segmentation
 
-RFM (Recency, Frequency, Monetary) analysis categorizes customers into business-friendly segments such as Champions, Loyal Customers, Potential Loyalists, At Risk, and Lost Customers.
-
-![Customer Segmentation] (<img width="1907" height="839" alt="Screenshot 2026-06-07 235443" src="https://github.com/user-attachments/assets/fe1f7509-3229-4bea-b7a1-edf35dbaf693" />
-)
-
----
+<img width="1907" height="839" alt="Customer Segmentation" src="https://github.com/user-attachments/assets/fe1f7509-3229-4bea-b7a1-edf35dbaf693">
 
 ### ⚠️ Churn Risk Analysis
 
-Identify high-risk customers before they churn. Analyze churn distribution, revenue at risk, customer segments, and prioritized retention opportunities.
-
-![Churn Analysis] (<img width="1904" height="813" alt="Screenshot 2026-06-07 235637" src="https://github.com/user-attachments/assets/50791ad5-cbfe-4a30-8b21-193e4dee18a6" />
-)
-
----
+<img width="1904" height="813" alt="Churn Analysis" src="https://github.com/user-attachments/assets/50791ad5-cbfe-4a30-8b21-193e4dee18a6">
 
 ### 📈 Revenue Forecasting
 
-Machine learning–powered revenue forecasting projects future business performance based on historical transaction trends and growth patterns.
-
-![Revenue Forecasting] (<img width="1895" height="845" alt="Screenshot 2026-06-07 235654" src="https://github.com/user-attachments/assets/3479b1a1-50bf-4505-a019-79e84fa50e0a" />
-)
-
----
+<img width="1895" height="845" alt="Revenue Forecasting" src="https://github.com/user-attachments/assets/3479b1a1-50bf-4505-a019-79e84fa50e0a">
 
 ### 🤖 AI Customer Predictor
 
-Interactive prediction engine that accepts customer RFM values and instantly returns:
-
-- Churn Risk
-- Churn Score
-- Customer Lifetime Value (CLV)
-- Customer Segment
-- Personalized Business Recommendation
-
-![AI Predictor] (<img width="1914" height="793" alt="Screenshot 2026-06-07 235730" src="https://github.com/user-attachments/assets/3f78057a-d879-47fd-aef2-7036a41ebd46" />
-)
-
----
+<img width="1914" height="793" alt="AI Predictor" src="https://github.com/user-attachments/assets/3f78057a-d879-47fd-aef2-7036a41ebd46">
 
 ### 🧠 Machine Learning Model Comparison
 
-Compare multiple classification models including Logistic Regression, Decision Tree, Random Forest, XGBoost, KNN, and Gradient Boosting using Accuracy, Precision, Recall, F1 Score, ROC-AUC, and Cross Validation metrics.
+<img width="1652" height="832" alt="ML Model Comparison" src="https://github.com/user-attachments/assets/65980d9b-98dd-43ba-8e1e-685e9208c45b">
 
-Features:
-- Stratified Train/Test Split
-- SMOTE Balancing
-- Leakage-Free Features
-- Generalization Gap Analysis
-- Cross Validation Scores
-
-![ML Model Comparison](<img width="1652" height="832" alt="Screenshot 2026-06-07 235032" src="https://github.com/user-attachments/assets/65980d9b-98dd-43ba-8e1e-685e9208c45b" />
-)
-
----
 
 ---
 
