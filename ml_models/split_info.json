@@ -1,0 +1,31 @@
+{
+  "total_samples": 4338,
+  "train_samples": 3470,
+  "test_samples": 868,
+  "churn_rate_train": 21.3,
+  "churn_rate_test": 21.2,
+  "features_used": [
+    "Recency",
+    "Frequency",
+    "Monetary",
+    "AvgOrderValue",
+    "TotalItems",
+    "UniqueProducts",
+    "Cluster",
+    "Country"
+  ],
+  "leaky_features_removed": [
+    "ChurnScore",
+    "R_Score",
+    "F_Score",
+    "M_Score",
+    "RFM_Score",
+    "CLV",
+    "Segment",
+    "Recommendation",
+    "ClusterLabel"
+  ],
+  "smote_applied": true,
+  "cv_folds": 5,
+  "best_model": "Random Forest"
+}
