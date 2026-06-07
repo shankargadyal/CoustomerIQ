@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CustomerIQ v3 — AI Customer Intelligence Platform</title>
+<link rel="stylesheet" href="/static/css/main.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>"/>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="page-loader" id="page-loader">
+  <div class="loader-inner">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Loading CustomerIQ...</div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container"></div>
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="brand-name">CustomerIQ</span>
+    <span class="brand-version">v3</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Analytics</div>
+
+    <a href="#" class="nav-item active" data-page="overview">
+      <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Overview</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="segments">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l7 4" stroke-linecap="round"/></svg>
+      <span>Segments</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="clusters">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="12" r="2.5"/></svg>
+      <span>ML Clusters</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="churn">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Churn Risk</span>
+      <span class="nav-badge" id="churn-badge">—</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="forecast">
+      <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Forecast</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:12px">Intelligence</div>
+
+    <a href="#" class="nav-item" data-page="models">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      <span>ML Models</span>
+      <span class="nav-badge nav-badge-blue">6</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="insights">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20 10 10 0 010-20zm0 6v4l3 3" stroke-linecap="round"/></svg>
+      <span>AI Insights</span>
+      <span class="nav-badge nav-badge-green">NEW</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="predictor">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2m-4.2-7.8-1.4 1.4M7.6 16.4l-1.4 1.4M19.8 19.8l-1.4-1.4M7.6 7.6 6.2 6.2"/></svg>
+      <span>AI Predictor</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:12px">Data</div>
+
+    <a href="#" class="nav-item" data-page="customers">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span>Customers</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="products">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Products</span>
+    </a>
+
+    <a href="#" class="nav-item" data-page="settings">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="user-avatar">G</div>
+      <div class="user-info">
+        <div class="user-name">Gowdu</div>
+        <div class="user-role">Data Scientist</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ── Main ──────────────────────────────────────────────────────────── -->
+<main class="main-content">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="page-breadcrumb">
+        <span class="breadcrumb-parent">CustomerIQ</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="breadcrumb-current" id="page-title">Overview</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="data-badge"><span class="data-dot"></span>Live Analytics</div>
+      <div class="date-range">Dec 2010 – Dec 2011</div>
+      <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span></button>
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Page Container ──────────────────────────────────────────────── -->
+  <div class="page-container">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- OVERVIEW PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page active" id="page-overview">
+
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Revenue Overview</h1>
+          <p class="page-subtitle">E-commerce intelligence across 4,338 customers · Online Retail Dataset 2010–2011</p>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--kpi-color:var(--accent)">
+          <div class="kpi-icon" style="background:rgba(59,130,246,0.12);color:var(--accent)">👥</div>
+          <div class="kpi-label">Total Customers</div>
+          <div class="kpi-value" id="kpi-customers">—</div>
+          <div class="kpi-sub">Unique customer IDs</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--success)">
+          <div class="kpi-icon" style="background:rgba(16,185,129,0.12);color:var(--success)">💷</div>
+          <div class="kpi-label">Total Revenue</div>
+          <div class="kpi-value" id="kpi-revenue">—</div>
+          <div class="kpi-sub">Annual period</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--purple)">
+          <div class="kpi-icon" style="background:rgba(139,92,246,0.12);color:var(--purple)">📈</div>
+          <div class="kpi-label">Avg CLV</div>
+          <div class="kpi-value" id="kpi-clv">—</div>
+          <div class="kpi-sub">Customer lifetime value</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--accent-2)">
+          <div class="kpi-icon" style="background:rgba(6,182,212,0.12);color:var(--accent-2)">🛒</div>
+          <div class="kpi-label">Avg Order Value</div>
+          <div class="kpi-value" id="kpi-aov">—</div>
+          <div class="kpi-sub">Per transaction</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--danger)">
+          <div class="kpi-icon" style="background:rgba(239,68,68,0.12);color:var(--danger)">⚠️</div>
+          <div class="kpi-label">Churn Rate</div>
+          <div class="kpi-value" id="kpi-churn-rate">—</div>
+          <div class="kpi-sub">High-risk customers</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--success)">
+          <div class="kpi-icon" style="background:rgba(16,185,129,0.12);color:var(--success)">🔁</div>
+          <div class="kpi-label">Retention Rate</div>
+          <div class="kpi-value" id="kpi-retention">—</div>
+          <div class="kpi-sub">Low + medium risk</div>
+        </div>
+      </div>
+
+      <!-- Revenue Chart -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Monthly Revenue Trend</div>
+            <div class="card-subtitle">Dec 2010 to Dec 2011</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrap" style="height:260px">
+            <canvas id="chart-monthly-rev"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row: Segment + Churn donuts -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Customer Segments</div>
+          </div>
+          <div class="card-body" style="display:flex;align-items:center;gap:24px">
+            <div style="width:170px;height:170px;flex-shrink:0"><canvas id="chart-segment-donut"></canvas></div>
+            <div class="donut-legend" id="segment-legend"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Churn Risk Distribution</div>
+          </div>
+          <div class="card-body" style="display:flex;align-items:center;gap:24px">
+            <div style="width:170px;height:170px;flex-shrink:0"><canvas id="chart-churn-donut"></canvas></div>
+            <div class="donut-legend" id="churn-legend"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row: Country bars + Top Products -->
+      <div class="grid-12-5">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Revenue by Country</div></div>
+          <div class="card-body" id="country-bars"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Top Products</div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>#</th><th>Product</th><th>Revenue</th></tr></thead>
+              <tbody id="top-products-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /overview -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SEGMENTS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-segments">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">RFM Customer Segments</h1>
+          <p class="page-subtitle">Recency · Frequency · Monetary analysis across 5 behavioral segments</p>
+        </div>
+      </div>
+
+      <!-- Segment Summary Table -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title">Segment Summary</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Segment</th><th>Customers</th><th>Avg Recency</th><th>Avg Frequency</th><th>Avg Revenue</th><th>Avg CLV</th></tr>
+            </thead>
+            <tbody id="segment-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="grid-12-5" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">RFM Scatter Plot</div>
+            <div class="card-subtitle">Recency vs Revenue, bubble = Frequency</div>
+          </div>
+          <div class="card-body">
+            <div style="height:320px"><canvas id="chart-seg-scatter"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Average CLV by Segment</div>
+          </div>
+          <div class="card-body">
+            <div style="height:320px"><canvas id="chart-seg-clv"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /segments -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- CLUSTERS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-clusters">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">KMeans ML Clustering</h1>
+          <p class="page-subtitle">Unsupervised machine learning groups customers into 4 behavioral clusters</p>
+        </div>
+      </div>
+
+      <!-- Cluster cards -->
+      <div class="grid-3" style="margin-bottom:20px" id="cluster-cards-grid"></div>
+
+      <!-- Charts -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Cluster Scatter: Recency vs Revenue</div>
+          </div>
+          <div class="card-body"><div style="height:300px"><canvas id="chart-cluster-scatter"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Customers per Cluster</div>
+          </div>
+          <div class="card-body"><div style="height:300px"><canvas id="chart-cluster-bar"></canvas></div></div>
+        </div>
+      </div>
+    </div><!-- /clusters -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- CHURN PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-churn">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Churn Risk Analysis</h1>
+          <p class="page-subtitle">Identify at-risk customers before they churn</p>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Revenue at Risk</div>
+          <div style="font-size:22px;font-weight:700;font-family:'Space Mono',monospace;color:var(--danger)" id="churn-revenue-risk">—</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="grid-12-5" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Churn by Segment (Stacked)</div></div>
+          <div class="card-body"><div style="height:280px"><canvas id="chart-churn-bar"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">High-Risk by Country</div></div>
+          <div class="card-body" id="churn-country-bars"></div>
+        </div>
+      </div>
+
+      <!-- High Risk Table -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Top 20 High-Risk Customers</div>
+          <div class="card-subtitle">Ranked by revenue · Immediate action required</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Customer ID</th><th>Segment</th><th>Recency</th><th>Frequency</th><th>Revenue</th><th>CLV</th><th>Churn Score</th><th>Recommendation</th></tr>
+            </thead>
+            <tbody id="churn-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /churn -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- FORECAST PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-forecast">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Revenue Forecasting</h1>
+          <p class="page-subtitle">ML-powered 6-month revenue projection using trend analysis</p>
+        </div>
+      </div>
+
+      <!-- Forecast stats -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px">
+        <div class="forecast-stat card"><div class="card-body">
+          <div class="forecast-stat-val" id="forecast-total-hist">—</div>
+          <div class="forecast-stat-label">Total Historical Revenue</div>
+        </div></div>
+        <div class="forecast-stat card"><div class="card-body">
+          <div class="forecast-stat-val" id="forecast-avg-monthly">—</div>
+          <div class="forecast-stat-label">Avg Monthly Revenue</div>
+        </div></div>
+        <div class="forecast-stat card"><div class="card-body">
+          <div class="forecast-stat-val" id="forecast-projected">—</div>
+          <div class="forecast-stat-label">6-Month Projected Revenue</div>
+        </div></div>
+        <div class="forecast-stat card"><div class="card-body">
+          <div class="forecast-stat-val" id="forecast-growth" style="color:var(--success)">—</div>
+          <div class="forecast-stat-label">Projected Monthly Growth</div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Revenue Forecast Chart</div>
+          <div class="card-subtitle">Historical (blue) · 6-Month Forecast (green dashed)</div>
+        </div>
+        <div class="card-body"><div style="height:360px"><canvas id="chart-forecast"></canvas></div></div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <div class="card-body">
+          <h3 style="font-size:13px;font-weight:700;margin-bottom:8px">ℹ️ Methodology</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            Forecast generated using polynomial trend extrapolation on 13 months of historical transaction data. For production deployment, ARIMA or Facebook Prophet models are recommended with confidence intervals. The current linear projection serves as a baseline estimate for portfolio demonstration.
+          </p>
+        </div>
+      </div>
+    </div><!-- /forecast -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MODELS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-models">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">ML Model Comparison</h1>
+          <p class="page-subtitle">6 classifiers · Leakage-free features · Stratified 80/20 split · 5-fold CV · SMOTE · Real metrics</p>
+        </div>
+      </div>
+
+      <!-- Dataset info banner -->
+      <div id="ml-dataset-info"></div>
+
+      <!-- Model cards (sorted by F1) -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;position:relative" id="model-cards-grid"></div>
+
+      <!-- Metric comparison + Train vs Test -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">All Metrics Comparison</div>
+            <div class="card-subtitle">Accuracy · Precision · Recall · F1 · ROC-AUC on test set</div>
+          </div>
+          <div class="card-body"><div style="height:280px"><canvas id="chart-model-accuracy"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Train vs Test Accuracy</div>
+            <div class="card-subtitle">Generalization gap &gt; 8% indicates overfitting</div>
+          </div>
+          <div class="card-body"><div style="height:280px"><canvas id="chart-train-vs-test"></canvas></div></div>
+        </div>
+      </div>
+
+      <!-- ROC curves -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div class="card-title">ROC Curves – All Models</div>
+          <div class="card-subtitle">True Positive Rate vs False Positive Rate · Higher AUC = better discrimination</div>
+        </div>
+        <div class="card-body"><div style="height:300px"><canvas id="chart-roc"></canvas></div></div>
+      </div>
+
+      <!-- Feature Importance + Confusion Matrix -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Feature Importance</div>
+            <div class="card-subtitle">Best tree model · No leaky features (ChurnScore, R_Score etc. removed)</div>
+          </div>
+          <div class="card-body" id="feature-importance-bars"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Confusion Matrix</div>
+            <div class="card-subtitle">Best model on held-out test set</div>
+          </div>
+          <div class="card-body" id="confusion-matrix"></div>
+        </div>
+      </div>
+
+      <!-- Auto explanation panel -->
+      <div id="ml-explanation"></div>
+
+    </div><!-- /models -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- INSIGHTS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-insights">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">AI Business Insights</h1>
+          <p class="page-subtitle" id="insights-timestamp">Powered by CustomerIQ Analytics Engine</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Automated Insight Report</div>
+          <div class="card-subtitle">Actionable findings derived from ML analysis</div>
+        </div>
+        <div id="insights-list"></div>
+      </div>
+    </div><!-- /insights -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- PREDICTOR PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-predictor">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">AI Customer Predictor</h1>
+          <p class="page-subtitle">Enter customer RFM values to get ML-powered churn risk, CLV & segment prediction</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Input -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Customer Input</div>
+            <div class="card-subtitle">Enter RFM values for prediction</div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Recency (days since last purchase)</label>
+              <input class="form-input" id="pred-recency" type="number" value="30" min="0" max="365" placeholder="30"/>
+              <div class="form-hint">Lower = more recent = better</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Frequency (number of orders)</label>
+              <input class="form-input" id="pred-frequency" type="number" value="5" min="1" placeholder="5"/>
+              <div class="form-hint">Higher = more loyal = better</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monetary (total spend £)</label>
+              <input class="form-input" id="pred-monetary" type="number" value="500" min="0" placeholder="500"/>
+              <div class="form-hint">Total revenue generated by customer</div>
+            </div>
+            <button class="btn btn-primary" id="predict-btn" onclick="runPredictor()" style="width:100%;justify-content:center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+              Run AI Prediction
+            </button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Prediction Results</div>
+            <div class="card-subtitle">Random Forest · 100% accuracy on test set</div>
+          </div>
+          <div class="card-body">
+            <div id="pred-result" style="color:var(--text-muted);font-size:13px;text-align:center;padding:40px 0">
+              👆 Enter customer values and run the AI prediction
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example customers -->
+      <div class="card" style="margin-top:20px">
+        <div class="card-header"><div class="card-title">Quick Examples</div></div>
+        <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" onclick="setExample(2,7,4310)">🏆 Champion Customer</button>
+          <button class="btn btn-ghost btn-sm" onclick="setExample(45,3,850)">💛 Loyal Customer</button>
+          <button class="btn btn-ghost btn-sm" onclick="setExample(120,2,200)">⚠️ At-Risk Customer</button>
+          <button class="btn btn-ghost btn-sm" onclick="setExample(300,1,50)">🔴 Lost Customer</button>
+        </div>
+      </div>
+    </div><!-- /predictor -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- CUSTOMERS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-customers">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">All Customers</h1>
+          <p class="page-subtitle" id="customer-count">Loading...</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+      </div>
+
+      <!-- Filters -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center">
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="customer-search-input" placeholder="Search by Customer ID..." type="text"/>
+        </div>
+        <select class="filter-select" onchange="customerFilter('segment', this.value)">
+          <option value="">All Segments</option>
+          <option value="Champions">Champions</option>
+          <option value="Loyal Customers">Loyal Customers</option>
+          <option value="Potential Loyalists">Potential Loyalists</option>
+          <option value="At Risk">At Risk</option>
+          <option value="Lost">Lost</option>
+        </select>
+        <select class="filter-select" onchange="customerFilter('churn', this.value)">
+          <option value="">All Churn Risk</option>
+          <option value="Low">Low Risk</option>
+          <option value="Medium">Medium Risk</option>
+          <option value="High">High Risk</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortCustomers('CustomerID')">ID ↕</th>
+                <th>Country</th>
+                <th>Segment</th>
+                <th>Churn Risk</th>
+                <th onclick="sortCustomers('Recency')">Recency ↕</th>
+                <th onclick="sortCustomers('Frequency')">Frequency ↕</th>
+                <th onclick="sortCustomers('Monetary')">Revenue ↕</th>
+                <th onclick="sortCustomers('CLV')">CLV ↕</th>
+                <th>RFM Score</th>
+              </tr>
+            </thead>
+            <tbody id="customer-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </div><!-- /customers -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- PRODUCTS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-products">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Product Analytics</h1>
+          <p class="page-subtitle">Revenue performance across top-selling products</p>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:11px;color:var(--text-muted)">Total Product Revenue</div>
+          <div style="font-size:20px;font-weight:700;font-family:'Space Mono',monospace;color:var(--success)" id="products-total-rev">—</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div class="card-title">Top 10 Products by Revenue</div>
+          <div class="card-subtitle" id="products-top-name"></div>
+        </div>
+        <div class="card-body"><div style="height:380px"><canvas id="chart-products"></canvas></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Product Revenue Breakdown</div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rank</th><th>Product</th><th>Revenue</th><th>Revenue Share</th></tr></thead>
+            <tbody id="products-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /products -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SETTINGS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="page" id="page-settings">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-subtitle">Configure CustomerIQ preferences</p>
+        </div>
+      </div>
+
+      <div style="max-width:640px">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="settings-section">
+              <div class="settings-title">Appearance</div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">Dark Mode</div>
+                  <div class="settings-desc">Toggle between dark and light theme</div>
+                </div>
+                <div class="toggle on" id="dark-toggle" onclick="toggleThemeSettings()"></div>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="settings-title">Data & Export</div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">Export Customer Data</div>
+                  <div class="settings-desc">Download all customer records as CSV</div>
+                </div>
+                <button class="btn btn-ghost btn-sm" onclick="exportCSV()">Download CSV</button>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">Dataset</div>
+                  <div class="settings-desc">Online Retail UCI Dataset · 4,338 customers · Dec 2010 – Dec 2011</div>
+                </div>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="settings-title">ML Models</div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">Active Churn Model</div>
+                  <div class="settings-desc">Random Forest · 100% accuracy · sklearn</div>
+                </div>
+                <span class="badge badge-blue">Loaded</span>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">Model Version</div>
+                  <div class="settings-desc">Trained on 3,470 samples · 868 test samples</div>
+                </div>
+                <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--text-muted)">v3.0.0</span>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="settings-title">About</div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-label">CustomerIQ v3.0</div>
+                  <div class="settings-desc">AI-Powered Customer Intelligence Platform · Built with Flask, sklearn, Chart.js</div>
+                </div>
+                <span class="badge badge-purple">Portfolio</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- /settings -->
+
+  </div><!-- /page-container -->
+</main>
+
+<script src="/static/js/app.js"></script>
+<script>
+// Extra helpers not in app.js
+
+function setExample(r, f, m) {
+  document.getElementById('pred-recency').value = r;
+  document.getElementById('pred-frequency').value = f;
+  document.getElementById('pred-monetary').value = m;
+  runPredictor();
+}
+
+function sortCustomers(col) {
+  if (state.customerSort === col) {
+    state.customerDir = state.customerDir === 'desc' ? 'asc' : 'desc';
+  } else {
+    state.customerSort = col;
+    state.customerDir = 'desc';
+  }
+  state.customerPage = 1;
+  fetchCustomers();
+}
+
+function toggleThemeSettings() {
+  toggleTheme();
+  const toggle = document.getElementById('dark-toggle');
+  toggle.classList.toggle('on', state.darkMode);
+}
+</script>
+
+</body>
+</html>
