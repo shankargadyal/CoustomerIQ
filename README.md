@@ -73,7 +73,7 @@ CustomerIQ is a full-stack data science application that predicts customer churn
 
 ## Live Demo
 
-> Deployed on Render — [customeriq.onrender.com](https://customeriq.onrender.com) *(may take 30s to wake from cold start)*
+> Deployed on Render — [customeriq.onrender.com](https://coustomeriq.onrender.com) *(may take 30s to wake from cold start)*
 
 ---
 
