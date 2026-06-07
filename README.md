@@ -58,8 +58,7 @@ The executive dashboard provides a complete snapshot of customer behavior, reven
 ---
 
 ## Overview
-
-CustomerIQ is a full-stack data science application that predicts customer churn using RFM (R
+CustomerIQ is a full-stack data science application that predicts customer churn using RFM (Recency, Frequency, Monetary) behavioural data. It trains 6 machine learning classifiers, compares them with proper cross-validation, detects overfitting, and visualises all results through a dark-themed analytics dashboard
 
 
 **Key design principles:**
